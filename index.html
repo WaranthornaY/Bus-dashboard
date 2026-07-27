@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07131d">
-  <title>Metro Transit Link | Phone View</title>
+  <title>Metro Transit Link | Passenger Information</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="dashboard" id="top">
+  <main class="dashboard is-offline" id="top">
     <header class="topbar surface">
       <a class="brand" href="#top" aria-label="Metro Transit Link passenger information dashboard"><span class="brand-mark" aria-hidden="true">MTL</span><span>METRO TRANSIT LINK<small>SMARTER TRANSIT. BETTER CITIES.</small></span></a>
       <div class="header-meta">
-        <span class="live active" id="live" aria-live="polite"><i></i><span id="liveText">LIVE</span></span>
-        <div class="clock-wrap"><time id="clock" aria-label="Current time">--:--</time><time id="date" aria-label="Current date">---</time></div>
+        <div class="weather" aria-label="Weather placeholder"><span aria-hidden="true">WEATHER</span><small>28 C</small></div>
+        <span class="bus-chip">ROUTE <strong id="busNo">101</strong></span>
+        <span class="live" id="live" aria-live="polite"><i></i><span id="liveText">OFFLINE</span></span>
+        <div class="clock-wrap"><time id="clock" aria-label="Current time">--:--:--</time><time id="date" aria-label="Current date">---</time></div>
+        <div id="serviceNotice" hidden></div>
+        <button id="demo" type="button" aria-describedby="serviceNotice">View demo</button>
+        <button id="connect" type="button" aria-describedby="liveText">Connect micro:bit</button>
       </div>
     </header>
 
@@ -21,6 +26,8 @@
       <div class="fleet-heading"><div><p class="eyebrow">LIVE NETWORK</p><h2 id="fleetTitle">Active services</h2></div><span><strong id="fleetCount">0</strong> buses tracked</span></div>
       <div class="fleet-list" id="fleetList" aria-label="Active bus services"></div>
     </section>
+
+    <details class="debug surface"><summary><b>System diagnostics</b> Serial message log <span aria-hidden="true">v</span></summary><button id="clearLog" type="button" class="clear-log">Clear log</button><div id="log" role="log" aria-live="polite"></div></details>
   </main>
   <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js"></script>
